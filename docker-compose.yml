@@ -1,12 +1,24 @@
-mysql:
-  image: mysql:5.7
-  ports:
-    - "3307:3307"
-  environment:
-    - MYSQL_ROOT_PASSWORD=
-    - MYSQL_ALLOW_EMPTY_PASSWORD=true
-    - MYSQL_USER=petclinic
-    - MYSQL_PASSWORD=petclinic
-    - MYSQL_DATABASE=petclinic
-  volumes:
-    - "./conf.d:/etc/mysql/conf.d:ro"
+version: '3'
+
+services:
+mydatabase:
+container_name: mydatabase
+image: mysql:5.7
+environment:
+MYSQL_ROOT_PASSWORD: root
+MYSQL_DATABASE: petclinic
+
+ app:
+image: lucasmelo123/petclinic
+container_name: app
+depends_on:
+- mydatabase
+build: .
+ports:
+- "8080:8080"
+environment:
+- spring.profiles.active=mysql
+- spring.datasource.url=jdbc:mysql://mydatabase/petclinic # "db" is the name we gave to our mysql container
+- spring.datasource.username=root
+- spring.datasource.password=root
+- spring.datasource.initialize=true # fill the empty DB with initial data
