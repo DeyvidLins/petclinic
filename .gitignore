@@ -10,3 +10,7 @@ target/*
 .sts4-cache/
 .vscode
 _site/
+/certificates
+certificates/*
+/nginx/nexuscert.crt
+/nginx/nexuskey.pem
