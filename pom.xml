@@ -120,7 +120,7 @@
       <optional>true</optional>
     </dependency>
   </dependencies>
-
+<!--
   <build>
     <plugins>
       <plugin>
@@ -367,6 +367,6 @@
         </pluginManagement>
       </build>
     </profile>
-  </profiles>
+  </profiles>-->
 
 </project>
